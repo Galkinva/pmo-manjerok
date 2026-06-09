@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфель · Манжерок · Парковая Инфраструктура</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0f14;--surface:#13161e;--card:#181c26;--border:#252a38;--amber:#ff9d00;--pink:#f73c5c;--blue:#2a8bea;--cyan:#48caed;--slate:#7E8AA2;--text:#e8eaf0;--muted:#5a6278;--green:#3ecf6e;--amber-bg:rgba(255,157,0,.10);--pink-bg:rgba(247,60,92,.10);--blue-bg:rgba(42,139,234,.10);--green-bg:rgba(62,207,110,.10)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:14px;line-height:1.5}
+
+/* HEADER */
+.site-header{border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;padding:0 1.5rem}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;height:52px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand-dot{width:9px;height:9px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);flex-shrink:0}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.brand-sep{color:var(--muted)}
+.header-project{font-weight:600;font-size:13px;color:var(--amber)}
+.header-meta{margin-left:auto;font-size:12px;color:var(--muted)}
+
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:1.5rem}
+
+/* HERO */
+.portfolio-hero{margin-bottom:2rem;padding:1.75rem;background:linear-gradient(135deg,var(--surface) 0%,#1a1e2e 100%);border:1px solid var(--border);border-radius:12px}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;flex-wrap:wrap}
+.hero-title{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.hero-title span{color:var(--amber)}
+.hero-sub{margin-top:.4rem;color:var(--slate);font-size:13px}
+.hero-kpis{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.hero-kpi{text-align:center;min-width:64px}
+.hero-kpi-val{font-size:26px;font-weight:800}
+.hero-kpi-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
+
+/* SECTION DIVIDER */
+.sec-divider{display:flex;align-items:center;gap:.75rem;margin:2rem 0 1.25rem}
+.sec-divider-line{flex:1;height:1px;background:var(--border)}
+.sec-divider-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* PROJECT CARD */
+.project-block{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:1.5rem;overflow:hidden}
+.project-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:flex-start}
+.proj-header-main{flex:1}
+.proj-idx{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.proj-name{font-size:16px;font-weight:700;line-height:1.3}
+.proj-attr{font-size:13px;color:var(--cyan);margin-top:.3rem;font-weight:500}
+.proj-meta{margin-top:.65rem;display:flex;gap:1.25rem;flex-wrap:wrap}
+.proj-meta-item{font-size:12px;color:var(--muted)}
+.proj-meta-item strong{color:var(--slate);font-weight:600}
+.proj-health-block{display:flex;flex-direction:column;align-items:center;gap:.3rem;min-width:80px}
+.health-badge{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+.health-green{background:var(--green-bg);border:2px solid var(--green);color:var(--green)}
+.health-amber{background:var(--amber-bg);border:2px solid var(--amber);color:var(--amber)}
+.health-red{background:var(--pink-bg);border:2px solid var(--pink);color:var(--pink)}
+.health-label{font-size:10px;color:var(--muted);text-align:center;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.proj-pct{font-size:22px;font-weight:800;color:var(--amber);text-align:center}
+.proj-pct-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* BODY */
+.project-body{padding:1.25rem 1.5rem}
+
+/* BLOCKER */
+.blocker-banner{background:var(--amber-bg);border:1px solid rgba(255,157,0,.3);border-radius:8px;padding:.65rem 1rem;font-size:12px;color:var(--amber);margin-bottom:1rem;display:flex;gap:.5rem;align-items:flex-start}
+.next-ms-banner{background:linear-gradient(135deg,rgba(42,139,234,.07) 0%,rgba(72,202,237,.04) 100%);border:1px solid rgba(72,202,237,.18);border-radius:8px;padding:.65rem 1rem;font-size:12px;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.next-ms-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:.2rem}
+.next-ms-name{font-weight:600;color:var(--text)}
+.next-ms-date{color:var(--muted);margin-top:.15rem;font-size:11px}
+.next-ms-days{font-size:22px;font-weight:800;color:var(--cyan);white-space:nowrap}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+
+/* INNER CARD */
+.icard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.icard-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
+
+/* PROGRESS */
+.prog-row{margin-bottom:.7rem}
+.prog-row:last-child{margin-bottom:0}
+.prog-label{display:flex;justify-content:space-between;margin-bottom:.3rem;font-size:12px;gap:.5rem}
+.prog-name{color:var(--slate);display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.prog-pct{font-weight:700;white-space:nowrap}
+.prog-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.prog-done{background:var(--green)}
+.prog-work{background:var(--amber)}
+.prog-wait{background:var(--muted);opacity:.4}
+.chip{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em}
+.chip-done{background:var(--green-bg);color:var(--green)}
+.chip-work{background:var(--amber-bg);color:var(--amber)}
+.chip-wait{background:rgba(90,98,120,.15);color:var(--muted)}
+
+/* RISKS */
+.risk-list{display:flex;flex-direction:column;gap:.5rem}
+.risk-row{display:flex;gap:.65rem;align-items:flex-start;padding:.65rem;border-radius:6px;background:var(--card);border:1px solid var(--border)}
+.risk-score{width:34px;height:34px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.rs-high{background:var(--pink-bg);color:var(--pink)}
+.rs-med{background:var(--amber-bg);color:var(--amber)}
+.rs-low{background:var(--green-bg);color:var(--green)}
+.risk-body{flex:1}
+.risk-desc{font-size:12px;font-weight:500;line-height:1.4}
+.risk-meta{margin-top:.25rem;font-size:11px;color:var(--muted)}
+.risk-strategy{font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;text-transform:uppercase;background:var(--blue-bg);color:var(--cyan)}
+.risk-lvl{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;align-self:center;flex-shrink:0}
+.rl-high{background:var(--pink-bg);color:var(--pink)}
+.rl-med{background:var(--amber-bg);color:var(--amber)}
+.rl-low{background:var(--green-bg);color:var(--green)}
+
+/* MILESTONES */
+.ms-list{display:flex;flex-direction:column;gap:.4rem}
+.ms-row{display:grid;grid-template-columns:44px 1fr auto auto auto;gap:.5rem;align-items:center;padding:.5rem .75rem;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-size:12px}
+.ms-code{font-weight:700;color:var(--muted);font-size:11px}
+.ms-name{font-weight:500;line-height:1.3}
+.ms-crit{font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.crit-crit{background:rgba(247,60,92,.15);color:var(--pink)}
+.crit-high{background:rgba(255,157,0,.12);color:var(--amber)}
+.crit-key{background:rgba(72,202,237,.12);color:var(--cyan)}
+.crit-med{background:rgba(126,138,162,.12);color:var(--slate)}
+.ms-st{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;text-align:center;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.ms-done{background:var(--green-bg);color:var(--green)}
+.ms-work{background:var(--amber-bg);color:var(--amber)}
+.ms-pend{background:rgba(90,98,120,.12);color:var(--muted)}
+.ms-date{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap}
+
+/* MILESTONES FULL */
+.ms-full{margin-top:1rem}
+
+/* DISCLAIMER */
+.disclaimer{margin-top:2.5rem;padding:1rem 1.5rem;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.9}
+
+/* MOBILE */
+@media(max-width:700px){
+  .page{padding:1rem}
+  .grid-2{grid-template-columns:1fr}
+  .project-header{flex-direction:column;gap:1rem}
+  .proj-health-block{flex-direction:row;min-width:auto;gap:.75rem;align-items:center}
+  .ms-row{grid-template-columns:36px 1fr auto auto;font-size:11px}
+  .ms-date{display:none}
+  .hero-title{font-size:18px}
+  .header-meta{display:none}
+  .proj-name{font-size:15px}
+  .hero-kpi-val{font-size:22px}
+}
+@media(max-width:420px){
+  .ms-row{grid-template-columns:32px 1fr auto}
+  .ms-crit{display:none}
+  .hero-kpis{gap:.75rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">Парковая Инфраструктура</span>
+      <span class="brand-sep">·</span>
+      <span class="header-project">Курорт «Манжерок»</span>
+    </div>
+    <div class="header-meta">Заказчик: ООО «СБД» &nbsp;·&nbsp; Статус на 09.06.2026</div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- HERO -->
+  <div class="portfolio-hero">
+    <div class="hero-top">
+      <div>
+        <div class="hero-title">Портфель аттракционов<br><span>Курорт «Манжерок»</span></div>
+        <div class="hero-sub">Республика Алтай · РП: Галкин В.А. · 3 проекта поставки и ввода в эксплуатацию</div>
+      </div>
+    </div>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--amber)">3</div><div class="hero-kpi-lbl">Проекта</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--green)">2</div><div class="hero-kpi-lbl">В графике</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--amber)">1</div><div class="hero-kpi-lbl">Под риском</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--cyan)">7</div><div class="hero-kpi-lbl">Аттракционов</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--text)">64%</div><div class="hero-kpi-lbl">SN готовность</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--text)">32%</div><div class="hero-kpi-lbl">IMT готовность</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--text)">23%</div><div class="hero-kpi-lbl">PP готовность</div></div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECT 1: SUPERNOVA VR ══ -->
+  <div class="sec-divider"><div class="sec-divider-line"></div><div class="sec-divider-label">Проект 1 из 3</div><div class="sec-divider-line"></div></div>
+
+  <div class="project-block">
+    <div class="project-header">
+      <div class="proj-header-main">
+        <div class="proj-idx">Supernova VR · DOF Robotik · Турция</div>
+        <div class="proj-name">Поставка, шеф-монтаж, ПНР и ввод в эксплуатацию Supernova VR × 2</div>
+        <div class="proj-attr">VR-аттракцион · 6 мест · 6-DOF · 2 единицы</div>
+        <div class="proj-meta">
+          <div class="proj-meta-item"><strong>Контракт</strong> № МАН08-Р-ПУР-4-26 от 23.01.2026</div>
+          <div class="proj-meta-item"><strong>Ввод в экспл.</strong> 06.07.2026</div>
+          <div class="proj-meta-item"><strong>Закрытие</strong> 20.07.2026</div>
+          <div class="proj-meta-item"><strong>Сертификация</strong> ООО «МСЦ»</div>
+        </div>
+      </div>
+      <div class="proj-health-block">
+        <div><div class="proj-pct">64%</div><div class="proj-pct-lbl">Готовность</div></div>
+        <div><div class="health-badge health-amber">!</div><div class="health-label">Под риском</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="blocker-banner">
+        <span>⚠</span>
+        <span>Блокер: веха «Пусконаладка (ПНР) · Акт ПНР» (19.06.2026, через 10 дн) зависит от готовности площадки заказчика — открытый риск R-1 (балл 20).</span>
+      </div>
+      <div class="grid-2">
+        <div class="icard">
+          <div class="icard-title">Прогресс фаз</div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Инициация и запуск <span class="chip chip-done">Завершено</span></span><span class="prog-pct" style="color:var(--green)">100%</span></div><div class="prog-track"><div class="prog-fill prog-done" style="width:100%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Управление проектом <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">83%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:83%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Закупка у производителя <span class="chip chip-done">Завершено</span></span><span class="prog-pct" style="color:var(--green)">100%</span></div><div class="prog-track"><div class="prog-fill prog-done" style="width:100%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Логистика и таможня <span class="chip chip-done">Завершено</span></span><span class="prog-pct" style="color:var(--green)">100%</span></div><div class="prog-track"><div class="prog-fill prog-done" style="width:100%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Монтаж и пусконаладка <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">50%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:50%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Сертификация <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">50%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:50%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Ввод в эксплуатацию <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Закрытие проекта <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+        </div>
+        <div class="icard">
+          <div class="icard-title">Топ-риски</div>
+          <div class="risk-list">
+            <div class="risk-row"><div class="risk-score rs-high">20</div><div class="risk-body"><div class="risk-desc">Заказчик затягивает готовность площадки → срыв ПНР и ввода</div><div class="risk-meta">Заказчик · <span class="risk-strategy">Эскалировать</span></div></div><div class="risk-lvl rl-high">Высокий</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">12</div><div class="risk-body"><div class="risk-desc">Затянутая сертификация ТР ЕАЭС 038/2016</div><div class="risk-meta">Регуляторный · <span class="risk-strategy">Снижать</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">9</div><div class="risk-body"><div class="risk-desc">Курсовой риск: оплата в ₽ по курсу ЦБ</div><div class="risk-meta">Финансовый · <span class="risk-strategy">Принять</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="icard ms-full">
+        <div class="icard-title">Ключевые вехи</div>
+        <div class="ms-list">
+          <div class="ms-row"><span class="ms-code">M2</span><span class="ms-name">Договор с заказчиком подписан</span><span class="ms-crit crit-high">Высокая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">23.01.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M3</span><span class="ms-name">Договор с производителем подписан</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">11.02.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M5</span><span class="ms-name">Отгрузка с завода (EXW)</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">08.04.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M7</span><span class="ms-name">Таможенный выпуск груза</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">28.04.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M8</span><span class="ms-name">Поставка на объект завершена</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">01.05.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M9</span><span class="ms-name">Монтаж завершён (силы заказчика)</span><span class="ms-crit crit-high">Высокая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">25.05.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M10</span><span class="ms-name">Пусконаладка (ПНР) завершена · Акт ПНР</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-work">В работе</span><span class="ms-date">19.06.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M12</span><span class="ms-name">Сертификат ТР ЕАЭС 038/2016 получен</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">03.07.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M13</span><span class="ms-name">Акт ввода в эксплуатацию подписан</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">06.07.2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECT 2: IMMERSIVE TUNNEL ══ -->
+  <div class="sec-divider"><div class="sec-divider-line"></div><div class="sec-divider-label">Проект 2 из 3</div><div class="sec-divider-line"></div></div>
+
+  <div class="project-block">
+    <div class="project-header">
+      <div class="proj-header-main">
+        <div class="proj-idx">Immersive Tunnel · DOF Robotics · Турция</div>
+        <div class="proj-name">Поставка, шеф-монтаж, ПНР и ввод в эксплуатацию Immersive Tunnel</div>
+        <div class="proj-attr">Иммерсивный туннель · 24 места · 2DOF · 1 единица</div>
+        <div class="proj-meta">
+          <div class="proj-meta-item"><strong>Контракт</strong> № МАН08-Р-ПУР-5-26 от 23.01.2026</div>
+          <div class="proj-meta-item"><strong>Ввод в экспл.</strong> окт. 2026</div>
+          <div class="proj-meta-item"><strong>Закрытие</strong> нояб. 2026</div>
+          <div class="proj-meta-item"><strong>Сертификация</strong> ООО «Проммаштест»</div>
+        </div>
+      </div>
+      <div class="proj-health-block">
+        <div><div class="proj-pct">32%</div><div class="proj-pct-lbl">Готовность</div></div>
+        <div><div class="health-badge health-green">✓</div><div class="health-label">В графике</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="next-ms-banner">
+        <div><div class="next-ms-lbl">Ближайшая веха</div><div class="next-ms-name">КТ-03 · Сертификационная инспекция на производстве</div><div class="next-ms-date">июль 2026 · Высокая критичность</div></div>
+        <div class="next-ms-days">52 дн</div>
+      </div>
+      <div class="grid-2">
+        <div class="icard">
+          <div class="icard-title">Прогресс фаз</div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Инициация и запуск <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">70%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:70%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Управление проектом <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">67%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:67%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Закупка у производителя <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">62%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:62%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Логистика и таможня <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Сертификация <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Шеф-монтаж и ПНР <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Приёмка и закрытие <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+        </div>
+        <div class="icard">
+          <div class="icard-title">Топ-риски</div>
+          <div class="risk-list">
+            <div class="risk-row"><div class="risk-score rs-high">20</div><div class="risk-body"><div class="risk-desc">Заказчик затягивает подготовку площадки → срыв ПНР</div><div class="risk-meta">Заказчик · <span class="risk-strategy">Эскалировать</span></div></div><div class="risk-lvl rl-high">Высокий</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">12</div><div class="risk-body"><div class="risk-desc">Курсовые разницы (оплата в ₽ по курсу ЦБ)</div><div class="risk-meta">Финансовый · <span class="risk-strategy">Передать</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">12</div><div class="risk-body"><div class="risk-desc">Задержка/неполучение сертификата ТР ЕАЭС 038/2016</div><div class="risk-meta">Регуляторный · <span class="risk-strategy">Снижать</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="icard ms-full">
+        <div class="icard-title">Ключевые вехи</div>
+        <div class="ms-list">
+          <div class="ms-row"><span class="ms-code">КТ-01</span><span class="ms-name">Договор с заказчиком подписан</span><span class="ms-crit crit-high">Высокая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">23.01.2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-02</span><span class="ms-name">Аванс 1 (70%) + банк. гарантия → запуск производства</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">фев. 2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-03</span><span class="ms-name">Сертификационная инспекция на производстве</span><span class="ms-crit crit-high">Высокая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">июль 2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-04</span><span class="ms-name">Аванс 2 (25%) / готовность к отгрузке</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">авг. 2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-05</span><span class="ms-name">Отгрузка с завода</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">10.08.2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-06</span><span class="ms-name">Таможенный выпуск в РФ</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">сен. 2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-10</span><span class="ms-name">Сертификат ТР ЕАЭС 038/2016 получен</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">окт. 2026</span></div>
+          <div class="ms-row"><span class="ms-code">КТ-11</span><span class="ms-name">Акт ввода в эксплуатацию подписан</span><span class="ms-crit crit-key">Ключевая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">окт. 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECT 3: PHOENIX PRO ══ -->
+  <div class="sec-divider"><div class="sec-divider-line"></div><div class="sec-divider-label">Проект 3 из 3</div><div class="sec-divider-line"></div></div>
+
+  <div class="project-block">
+    <div class="project-header">
+      <div class="proj-header-main">
+        <div class="proj-idx">PhoenixPRO · WAVE ITALY · Италия</div>
+        <div class="proj-name">Поставка, шеф-монтаж, ПНР и ввод в эксплуатацию PhoenixPRO × 4</div>
+        <div class="proj-attr">Симулятор PhoenixPRO · 4 единицы</div>
+        <div class="proj-meta">
+          <div class="proj-meta-item"><strong>Контракт</strong> № МАН08-Р-ПУР-7-26 от 23.01.2026</div>
+          <div class="proj-meta-item"><strong>Ввод в экспл.</strong> 15.08.2026</div>
+          <div class="proj-meta-item"><strong>Закрытие</strong> 31.08.2026</div>
+          <div class="proj-meta-item"><strong>Сертификация</strong> ООО «Проммаштест»</div>
+        </div>
+      </div>
+      <div class="proj-health-block">
+        <div><div class="proj-pct">23%</div><div class="proj-pct-lbl">Готовность</div></div>
+        <div><div class="health-badge health-green">✓</div><div class="health-label">В графике</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="next-ms-banner">
+        <div><div class="next-ms-lbl">Ближайшая критическая веха</div><div class="next-ms-name">M5 · Отгрузка с завода (Италия)</div><div class="next-ms-date">22.06.2026 · Критическая</div></div>
+        <div class="next-ms-days">13 дн</div>
+      </div>
+      <div class="grid-2">
+        <div class="icard">
+          <div class="icard-title">Прогресс фаз</div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Инициация и запуск <span class="chip chip-done">Завершено</span></span><span class="prog-pct" style="color:var(--green)">100%</span></div><div class="prog-track"><div class="prog-fill prog-done" style="width:100%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Управление проектом <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">67%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:67%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Закупка у изготовителя <span class="chip chip-work">В работе</span></span><span class="prog-pct" style="color:var(--amber)">75%</span></div><div class="prog-track"><div class="prog-fill prog-work" style="width:75%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Логистика, таможня, поставка <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">10%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:10%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Сертификация <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Шеф-монтаж и ПНР <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+          <div class="prog-row"><div class="prog-label"><span class="prog-name">Приёмка, ввод, закрытие <span class="chip chip-wait">Не начато</span></span><span class="prog-pct" style="color:var(--muted)">0%</span></div><div class="prog-track"><div class="prog-fill prog-wait" style="width:0%"></div></div></div>
+        </div>
+        <div class="icard">
+          <div class="icard-title">Топ-риски</div>
+          <div class="risk-list">
+            <div class="risk-row"><div class="risk-score rs-high">20</div><div class="risk-body"><div class="risk-desc">Заказчик затягивает готовность площадки → срыв ПНР и ввода</div><div class="risk-meta">Заказчик · <span class="risk-strategy">Снижать</span></div></div><div class="risk-lvl rl-high">Высокий</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">9</div><div class="risk-body"><div class="risk-desc">Курсовая разница (платежи в ₽ по курсу ЦБ)</div><div class="risk-meta">Финансовый · <span class="risk-strategy">Принять</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+            <div class="risk-row"><div class="risk-score rs-med">9</div><div class="risk-body"><div class="risk-desc">Затягивание сертификации сложного оборудования</div><div class="risk-meta">Технический · <span class="risk-strategy">Снижать</span></div></div><div class="risk-lvl rl-med">Средний</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="icard ms-full">
+        <div class="icard-title">Ключевые вехи</div>
+        <div class="ms-list">
+          <div class="ms-row"><span class="ms-code">M2</span><span class="ms-name">Договор с заказчиком подписан</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">23.01.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M3</span><span class="ms-name">Договор с изготовителем (WAVE ITALY) подписан</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">05.02.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M4</span><span class="ms-name">Договор с перевозчиком (Траско) заключён</span><span class="ms-crit crit-med">Обычная</span><span class="ms-st ms-done">Выполнено</span><span class="ms-date">05.06.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M5</span><span class="ms-name">Отгрузка с завода (Италия)</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-work">В работе</span><span class="ms-date">22.06.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M7</span><span class="ms-name">Таможенный выпуск груза в РФ</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">15.07.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M8</span><span class="ms-name">Сертификат соответствия (ТР ЕАЭС 038/2016) получен</span><span class="ms-crit crit-crit">Критическая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">20.07.2026</span></div>
+          <div class="ms-row"><span class="ms-code">M9</span><span class="ms-name">Акт ввода в эксплуатацию подписан</span><span class="ms-crit crit-key">Ключевая</span><span class="ms-st ms-pend">Не начато</span><span class="ms-date">15.08.2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Курорт «Манжерок», Республика Алтай · Заказчик: ООО «СБД» · РП: Галкин В.А.<br>
+    Статус на 09.06.2026 · Только для ознакомления · ООО «Парковая Инфраструктура»
+  </div>
+</main>
+</body>
+</html>
